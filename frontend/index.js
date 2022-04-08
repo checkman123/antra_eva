@@ -132,10 +132,12 @@ const Controller = ((model, view) => {
     todoButton.addEventListener("click", (event) => {
       event.preventDefault();
       const newtodo = new model.Todo(inputbox.value);
-      model.addTodo(newtodo).then((todo) => {
-        state.todolist = [todo, ...state.todolist];
-      });
-      event.target.value = "";
+      if (newtodo.content.length > 0) {
+        model.addTodo(newtodo).then((todo) => {
+          state.todolist = [todo, ...state.todolist];
+        });
+        event.target.value = "";
+      }
     });
     //typing and pressing Enter
     inputbox.addEventListener("keyup", (event) => {

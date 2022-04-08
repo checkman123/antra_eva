@@ -20,14 +20,15 @@ export const Api = (() => {
       },
     }).then((response) => response.json());
 
-  const editTodo = (id) =>
-    fetch([baseUrl, path, id].join("/"), {
+  const editTodo = (todo, id) => {
+    const data = fetch([baseUrl, path, id].join("/"), {
       method: "PUT",
       body: JSON.stringify(todo),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-    }).then((response) => response.json());
+    });
+  };
 
   return {
     getTodos,

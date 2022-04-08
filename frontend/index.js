@@ -177,27 +177,46 @@ const Controller = ((model, view) => {
       let todo;
 
       if (event.target.className.includes("button__arrow")) {
+        //find the list item
         todo = state.todolist_pending.find(
           (todo) => +todo.id == +event.target.id
         );
+
+        //add to complete
+        todo.isCompleted = true;
         state.todolist = [todo, ...state.todolist];
 
-        state.todolist = state.todolist.filter(
-          (todo) => todo.id !== event.target.id
+        //take out from pending
+        state.todolist_pending = state.todolist_pending.filter(
+          (todo) => +todo.id !== +event.target.id
         );
-        model.updateTodo(todo, event.target.id);
-        model.deleteTodo(event.target.id);
+
+        // model.editTodo(todo, event.target.id);
+        // model.deleteTodo(event.target.id);
       }
     });
 
     //complete to pending
-    // completed.addEventListener("click", (event) => {
-    //   if (event.target.className.includes("button__arrow")) {
-    //     state.todolist_pending = state.todolist.filter(
-    //       (todo) => todo.id === event.target.id
-    //     );
-    //   }
-    // });
+    completed.addEventListener("click", (event) => {
+      let todo;
+
+      if (event.target.className.includes("button__arrow")) {
+        //find the list item
+        todo = state.todolist.find((todo) => +todo.id == +event.target.id);
+
+        //add to complete
+        todo.isCompleted = true;
+        state.todolist_pending = [todo, ...state.todolist_pending];
+
+        //take out from pending
+        state.todolist = state.todolist.filter(
+          (todo) => +todo.id !== +event.target.id
+        );
+
+        // model.editTodo(todo, event.target.id);
+        // model.deleteTodo(event.target.id);
+      }
+    });
   };
 
   const editTodo = () => {
@@ -210,7 +229,6 @@ const Controller = ((model, view) => {
       let completed = [];
       let pending = [];
       for (let i = 0; i < todos.length; i++) {
-        console.log(todos[i].isCompleted);
         if (todos[i].isCompleted === false) {
           pending.push(todos[i]);
         } else {

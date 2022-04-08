@@ -1,0 +1,42 @@
+{
+  "todos": [
+    {
+      "content": "Build two lists, pending list and completed list",
+      "isCompleted": true,
+      "id": 3
+    },
+    {
+      "content": "build three buttons for each todo task",
+      "isCompleted": true,
+      "id": 4
+    },
+    {
+      "content": "bind event handler for buttons",
+      "isCompleted": true,
+      "id": 5
+    },
+    {
+      "content": "there should be totally 5 http requests",
+      "isCompleted": false,
+      "id": 7
+    },
+    {
+      "content": "Get to-do data from json server at the beginning ",
+      "isCompleted": true,
+      "id": 8
+    },
+    {
+      "content": "asddsa",
+      "isCompleted": false,
+      "id": 13
+    },
+    [],
+    [],
+    [],
+    {
+      "content": "asdsad",
+      "isCompleted": false,
+      "id": 17
+    }
+  ]
+}

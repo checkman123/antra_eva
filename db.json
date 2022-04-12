@@ -7,17 +7,17 @@
     },
     {
       "content": "build three buttons for each todo task",
-      "isCompleted": true,
+      "isCompleted": false,
       "id": 4
     },
     {
       "content": "bind event handler for buttons",
-      "isCompleted": true,
+      "isCompleted": false,
       "id": 5
     },
     {
       "content": "there should be totally 5 http requests",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 7
     },
     {
@@ -27,27 +27,27 @@
     },
     {
       "content": "CRUD operation should be performed for all 4 buttons",
-      "isCompleted": true,
+      "isCompleted": false,
       "id": 9
     },
     {
       "content": "Apply some style as you like",
-      "isCompleted": true,
+      "isCompleted": false,
       "id": 11
     },
     {
       "content": "give some thought about the data structure",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 12
     },
     {
       "content": "what's more than the original to-do list!!!!!",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 13
     },
     {
       "content": "Make a symmetrical layout",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 14
     },
     {

@@ -131,6 +131,8 @@ const Controller = ((model, view) => {
     //For submit button
     todoButton.addEventListener("click", (event) => {
       event.preventDefault();
+
+      //Get new todo from the inputbox
       const newtodo = new model.Todo(inputbox.value);
       if (newtodo.content.length > 0) {
         model.addTodo(newtodo).then((todo) => {
@@ -186,15 +188,17 @@ const Controller = ((model, view) => {
 
         //add to complete
         todo.isCompleted = true;
+
+        /* -- For no database ---
         state.todolist = [todo, ...state.todolist];
 
         //take out from pending
         state.todolist_pending = state.todolist_pending.filter(
           (todo) => +todo.id !== +event.target.id
         );
+        */
 
-        // model.editTodo(todo, event.target.id);
-        // model.deleteTodo(event.target.id);
+        model.editTodo(todo, event.target.id);
       }
     });
 
@@ -207,16 +211,18 @@ const Controller = ((model, view) => {
         todo = state.todolist.find((todo) => +todo.id == +event.target.id);
 
         //add to complete
-        todo.isCompleted = true;
+        todo.isCompleted = false;
+
+        /* -- For no database ---
         state.todolist_pending = [todo, ...state.todolist_pending];
 
         //take out from pending
         state.todolist = state.todolist.filter(
           (todo) => +todo.id !== +event.target.id
         );
+        */
 
-        // model.editTodo(todo, event.target.id);
-        // model.deleteTodo(event.target.id);
+        model.editTodo(todo, event.target.id);
       }
     });
   };

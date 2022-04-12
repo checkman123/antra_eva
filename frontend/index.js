@@ -19,7 +19,7 @@ const View = (() => {
     arr.forEach((todo) => {
       tmp += `
               <li>
-                  <span>${todo.content}</span>
+                  <span id="edit_${todo.id}">${todo.content}</span>
                   <div>
                     <button class="button__edit" id="${todo.id}">
                       <i class='fa-solid fa-edit'></i>
@@ -45,7 +45,7 @@ const View = (() => {
               <button class="button__arrow" id="${todo.id}">
               <i class='fa-solid fa-arrow-left'></i>
               </button>
-                  <span>${todo.content}</span>
+                  <span id="edit_${todo.id}">${todo.content}</span>
                   <div>
                     <button class="button__edit" id="${todo.id}">
                       <i class='fa-solid fa-edit'></i>
@@ -156,7 +156,7 @@ const Controller = ((model, view) => {
     pending.addEventListener("click", (event) => {
       if (event.target.className.includes("button__delete")) {
         state.todolist = state.todolist.filter(
-          (todo) => todo.id !== event.target.id
+          (todo) => +todo.id !== +event.target.id
         );
         model.deleteTodo(event.target.id);
       }
@@ -165,7 +165,7 @@ const Controller = ((model, view) => {
     completed.addEventListener("click", (event) => {
       if (event.target.className.includes("button__delete")) {
         state.todolist = state.todolist.filter(
-          (todo) => todo.id !== event.target.id
+          (todo) => +todo.id !== +event.target.id
         );
         model.deleteTodo(event.target.id);
       }
@@ -229,6 +229,87 @@ const Controller = ((model, view) => {
 
   const editTodo = () => {
     //const container = document.querySelector(view.domstr.todolist_pending);
+    const pending = document.querySelector(view.domstr.todolist_pending);
+    const completed = document.querySelector(view.domstr.todolist);
+
+    console.log(pending);
+    console.log(completed);
+
+    pending.addEventListener("click", (event) => {
+      if (event.target.className.includes("button__edit")) {
+        //find the list item
+        let todo = state.todolist_pending.find(
+          (todo) => +todo.id == +event.target.id
+        );
+
+        let editContent = document.getElementById(`edit_${todo.id}`);
+
+        //set span to be editable
+        editContent.setAttribute("contenteditable", true);
+        editContent.focus();
+
+        editContent.addEventListener("keyup", (event) => {
+          if (event.key === "Enter") {
+            editContent.setAttribute("contenteditable", false);
+
+            //replace newline('\n') from text
+            editContent.innerText = editContent.innerText.replace(/\n/g, "");
+
+            todo.content = editContent.innerText;
+            model.editTodo(todo, todo.id);
+          }
+        });
+
+        //when user unfocus the text, cancel edit
+        editContent.addEventListener("blur", (event) => {
+          editContent.setAttribute("contenteditable", false);
+
+          //replace newline('\n') from text
+          editContent.innerText = editContent.innerText.replace(/\n/g, "");
+
+          todo.content = editContent.innerText;
+          model.editTodo(todo, todo.id);
+        });
+      }
+    });
+
+    completed.addEventListener("click", (event) => {
+      if (event.target.className.includes("button__edit")) {
+        //find the list item
+        let todo = state.todolist.find((todo) => +todo.id == +event.target.id);
+
+        console.log(todo);
+
+        let editContent = document.getElementById(`edit_${todo.id}`);
+
+        //set span to be editable
+        editContent.setAttribute("contenteditable", true);
+        editContent.focus();
+
+        editContent.addEventListener("keyup", (event) => {
+          if (event.key === "Enter") {
+            editContent.setAttribute("contenteditable", false);
+
+            //replace newline('\n') from text
+            editContent.innerText = editContent.innerText.replace(/\n/g, "");
+
+            todo.content = editContent.innerText;
+            model.editTodo(todo, todo.id);
+          }
+        });
+
+        //when user unfocus the text, cancel edit
+        editContent.addEventListener("blur", (event) => {
+          editContent.setAttribute("contenteditable", false);
+
+          //replace newline('\n') from text
+          editContent.innerText = editContent.innerText.replace(/\n/g, "");
+
+          todo.content = editContent.innerText;
+          model.editTodo(todo, todo.id);
+        });
+      }
+    });
   };
 
   const init = () => {

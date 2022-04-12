@@ -1,13 +1,13 @@
 {
   "todos": [
     {
-      "content": "Build two lists, pending list and completed list",
-      "isCompleted": true,
+      "content": "Build two lists, pending list and completed list ",
+      "isCompleted": false,
       "id": 3
     },
     {
       "content": "build three buttons for each todo task",
-      "isCompleted": false,
+      "isCompleted": true,
       "id": 4
     },
     {
@@ -54,6 +54,16 @@
       "content": "Functional first, stylish second",
       "isCompleted": true,
       "id": 15
+    },
+    {
+      "content": "asdsad",
+      "isCompleted": false,
+      "id": 16
+    },
+    {
+      "content": "maybe temp",
+      "isCompleted": true,
+      "id": 17
     }
   ]
 }
